@@ -1,0 +1,50 @@
+/**************
+* Header
+**************/
+
+.my_nav {
+   background: whitesmoke;
+   line-height: 0px;
+}
+
+.menu-background {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 3px;
+   background: green;
+   z-index: 1;
+}
+
+div.page-link {
+   margin-left: 0px !important;
+   background-color: F7F0F4;
+   display: inline-block;
+   min-width: 120px;
+   font-size: 17.2px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   /*border-right: 1px solid #EAEAEA;*/
+   text-align: center;
+   line-height: 3.3;
+   background: tan;
+}
+
+.page-link a { text-decoration: none; }
+.page-link a:link{ color: black; }
+.page-link a:visited{ color: black; }
+
+.color-green { background: green; }
+.color-blue { background: blue; }
+.color-yellow { background: yellow; }
+.color-tan { background: tan; }
+
+/* colors appropiate menu for appropoate page*/
+body.home li.home { background: green; }
+body.home .menu-background { background: green; }
+body.about li.about { background: blue; }
+body.about .menu-background { background: blue; }
+body.html5 li.html5 { background: yellow; }
+body.html5 .menu-background { background: yellow; }
+body.webgl li.webgl { background: tan; }
+body.webgl .menu-background { background: tan; }

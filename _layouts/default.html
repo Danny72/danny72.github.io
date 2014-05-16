@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body class="{{ page.category }}">
+
+    {% include header.html %}
+
+    <div class="page-content">
+      <div class="wrap">
+        <div class="sidepanel">
+          <div class="bio">
+            <h3>Daniel Pike</h3>
+            <p>
+            A blog about coding and personal stuff
+            </p>
+          </div>
+          <div class="sidelinks">
+            <a target="_blank" href="http://www.google.co.uk">
+              <i class="fa fa-google-plus-square"></i>Google</a>
+            <a target="_blank" href="http://www.github.com/danny72">
+              <i class="fa fa-github-square"></i>Github</a>
+            <a target+"_blank" href="http://www.twitter.com/dannyp72">
+              <i class="fa fa-twitter"></i>Twitter</a>
+          </div>
+        </div>
+        <div class="maincontent">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+    </body>
+</html>
