@@ -21,7 +21,7 @@
       <div class="trigger">
         {% assign sorted_pages = site.pages | sort:"name" %}
         {% for node in sorted_pages %}
-          {% if node.url != "/feed.xml" and node.url != "/index.html" %}
+          {% if node.url != "/feed.xml" and node.url != "/index.html" and node.url != "/tags/" %}
           <div class="page-link {{ node.url | remove: '/' }}">
             <a href="{{ node.url | prepend: site.baseurl }}" data="{{ node.colour }}"> 
                 {{ node.title }}</a>

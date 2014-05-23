@@ -1,0 +1,78 @@
+---
+title: Procs, Blocks and Lambdas in Ruby
+author: Daniel
+layout: post
+permalink: /procs-blocks-and-lambdas-in-ruby/
+categories:
+  - code
+tags:
+  - block
+  - lambda
+  - proc
+  - ruby
+---
+Blocks, Procs and Lambdas allow you to wrap up blocks of code into objects. These can then be passed around between methods and enable all sorts of high level functionality. Let&#8217;s look at them in order, how they&#8217;ve created and used. **Blocks** When writing standard Ruby, you&#8217;re using blocks all of the time, and passing them into methods without really thinking about the deeper level mechanics of what&#8217;s going on. <div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="br0">&#91;</span><span class="nu0">1</span>,<span class="nu0">2</span>,<span class="nu0">3</span>,<span class="nu0">4</span><span class="br0">&#93;</span>.<span class="me1">each</span> <span class="br0">&#123;</span><span class="sy0">|</span>x<span class="sy0">|</span> <span class="kw3">puts</span> x<span class="br0">&#125;</span>
+  </div>
+</div> Here we&#8217;re passing a block to the each method of an Array. The each method will loop through the Array and apply the block to each element of the Array in turn. This is done via yield. We can see a simple example of how yield is used. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<br /> &nbsp; <span class="kw1">yield</span><br /> <span class="kw1">end</span><br /> <br /> test <span class="br0">&#123;</span> <span class="kw3">puts</span> <span class="st0">"Block"</span> <span class="br0">&#125;</span>
+  </div>
+</div> We&#8217;ve just called the test method and passed a block to it. The test method runs and hits yield. It then fills in yield with whatever block was passed to it, and run executes it. If you don&#8217;t pass a block to a method will a yield call, Ruby will throw an error as it doesn&#8217;t know what to do. We can do slightly more interesting things with blocks using block variables. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<span class="br0">&#40;</span>n<span class="br0">&#41;</span><br /> &nbsp; <span class="kw1">for</span> i <span class="kw1">in</span> <span class="nu0">1</span>..<span class="me1">n</span><br /> &nbsp; &nbsp; <span class="kw1">yield</span><span class="br0">&#40;</span>i<span class="br0">&#41;</span><br /> &nbsp; <span class="kw1">end</span><br /> <span class="kw1">end</span><br /> <br /> test<span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="sy0">|</span>x<span class="sy0">|</span> <span class="kw3">puts</span> <span class="st0">"#Iteration {x}: Block via yield"</span> <span class="br0">&#125;</span><br /> <br /> <span class="co1">#Output</span><br /> Iteration <span class="nu0"></span>: Block via <span class="kw1">yield</span><br /> Iteration <span class="nu0">1</span>: Block via <span class="kw1">yield</span><br /> Iteration <span class="nu0">2</span>: Block via <span class="kw1">yield</span><br /> Iteration <span class="nu0">3</span>: Block via <span class="kw1">yield</span><br /> Iteration <span class="nu0">4</span>: Block via <span class="kw1">yield</span>
+  </div>
+</div> Here we&#8217;ve added parameters to the method and added a block variable to the block. Now when test is called, it runs through a for loop &#8216;n&#8217; number of times. For each iteration of the loop, yield is called and passes to the block the number of the iteration. This gets mapped to the block variable and used in the puts statement. We can use this knowledge of blocks to write our own iterate method for the Array class. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">class</span> <span class="kw3">Array</span><br /> &nbsp; <span class="kw1">def</span> iterate!<br /> &nbsp; &nbsp; <span class="kw2">self</span>.<span class="me1">each_with_index</span> <span class="br0">&#123;</span><span class="sy0">|</span>x,i<span class="sy0">|</span> <span class="kw2">self</span><span class="br0">&#91;</span>i<span class="br0">&#93;</span> = <span class="kw1">yield</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span> <span class="br0">&#125;</span><br /> &nbsp; <span class="kw1">end</span><br /> <span class="kw1">end</span><br /> <br /> num = <span class="br0">&#91;</span><span class="nu0">1</span>,<span class="nu0">2</span>,<span class="nu0">3</span><span class="br0">&#93;</span><br /> num.<span class="me1">iterate</span>! <span class="br0">&#123;</span><span class="sy0">|</span>x<span class="sy0">|</span> x <span class="sy0">**</span> <span class="nu0">3</span><span class="br0">&#125;</span><br /> <span class="kw3">puts</span> num.<span class="me1">inspect</span><br /> <br /> <span class="co1">#Output</span><br /> <span class="br0">&#91;</span><span class="nu0">1</span>, <span class="nu0">8</span>, <span class="nu0">27</span><span class="br0">&#93;</span>
+  </div>
+</div> This works just like the map method, going through each element of the array and transforming it via the block we passed in. In this case we&#8217;ll cube each element of the array. There is a more formal way to use blocks in Ruby though, and that&#8217;s Procs. 
+
+**Procs** Procs are simply blocks that are wrapped up in a class object in Ruby. You use them over blocks when you want to keep your code DRY, avoiding creating the same block multiple times. It&#8217;s also useful when you need to pass multiple blocks to a method. <div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<span class="br0">&#40;</span>my_proc<span class="br0">&#41;</span><br /> &nbsp; <span class="br0">&#40;</span><span class="nu0">1</span>..<span class="nu0">10</span><span class="br0">&#41;</span>.<span class="me1">each</span> <span class="kw1">do</span> <span class="sy0">|</span>x<span class="sy0">|</span><br /> &nbsp; &nbsp; my_proc.<span class="me1">call</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span><br /> &nbsp; <span class="kw1">end</span><br /> <span class="kw1">end</span><br /> <br /> my_proc = <span class="kw3">proc</span> <span class="br0">&#123;</span> <span class="sy0">|</span>x<span class="sy0">|</span> <span class="kw3">puts</span> <span class="st0">"#{x}: here's a proc"</span> <span class="br0">&#125;</span><br /> test<span class="br0">&#40;</span>my_proc<span class="br0">&#41;</span>
+  </div>
+</div> You use Procs in almost the same way as blocks. You just use the 
+
+**proc** keyword before the block definition to create a Proc object. Inside the method, instead using yield, you call the Proc object. You can create a Proc object on the fly using the &#8216;&&#8217; character before the block parameter. <div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<span class="br0">&#40;</span><span class="sy0">&</span>my_block<span class="br0">&#41;</span><br /> &nbsp; my_block.<span class="me1">call</span><br /> &nbsp; <span class="kw3">puts</span> my_block.<span class="kw1">class</span><br /> <span class="kw1">end</span><br /> <br /> test <span class="br0">&#123;</span> <span class="kw3">puts</span> <span class="st0">"this will be turned into a Proc"</span> <span class="br0">&#125;</span><br /> <br /> <span class="co1">#Output</span><br /> this will be turned into a <span class="kw3">Proc</span><br /> <span class="kw3">Proc</span>
+  </div>
+</div> The most obvious advantage of Procs over blocks is the ability to use them as objects. We can pass multiple Procs to a method, while we can only pass 1 block at a time. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> multi_proc<span class="br0">&#40;</span>procs<span class="br0">&#41;</span><br /> &nbsp; procs<span class="br0">&#91;</span><span class="re3">:proc1</span><span class="br0">&#93;</span>.<span class="me1">call</span><br /> &nbsp; procs<span class="br0">&#91;</span><span class="re3">:proc2</span><span class="br0">&#93;</span>.<span class="me1">call</span><br /> &nbsp; procs<span class="br0">&#91;</span><span class="re3">:proc3</span><span class="br0">&#93;</span>.<span class="me1">call</span><br /> <span class="kw1">end</span><br /> <br /> multi_proc<span class="br0">&#40;</span>proc1: <span class="kw3">proc</span> <span class="br0">&#123;</span> <span class="kw3">puts</span> <span class="st0">"first proc"</span> <span class="br0">&#125;</span>,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;proc2: <span class="kw3">proc</span> <span class="br0">&#123;</span> <span class="kw3">puts</span> <span class="st0">"second proc"</span> <span class="br0">&#125;</span>,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;proc3: <span class="kw3">proc</span> <span class="br0">&#123;</span> <span class="kw3">puts</span> <span class="st0">"third proc"</span> <span class="br0">&#125;</span><span class="br0">&#41;</span>
+  </div>
+</div> *Note: Ruby will infer a Hash if you just pass it a series of key-pair values, without using the curly braces. If you have another argument on the end, you&#8217;ll need to add them. 
+
+**Lambdas** Both Procs and Lambdas function as Ruby&#8217;s implementation of anonymous functions. Lambdas are almost exactly the same as Procs syntactically, but they differ from them in a few ways regarding control flow. <div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<span class="br0">&#40;</span>my_lambda<span class="br0">&#41;</span><br /> &nbsp; <span class="br0">&#40;</span><span class="nu0">1</span>..<span class="nu0">10</span><span class="br0">&#41;</span>.<span class="me1">each</span> <span class="kw1">do</span> <span class="sy0">|</span>x<span class="sy0">|</span><br /> &nbsp; &nbsp; my_lambda.<span class="me1">call</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span><br /> &nbsp; <span class="kw1">end</span><br /> <span class="kw1">end</span><br /> <br /> my_lambda = <span class="kw3">lambda</span> <span class="br0">&#123;</span> <span class="sy0">|</span>x<span class="sy0">|</span> <span class="kw3">puts</span> <span class="st0">"#{x}: here's a lambda"</span> <span class="br0">&#125;</span><br /> test<span class="br0">&#40;</span>my_lambda<span class="br0">&#41;</span>
+  </div>
+</div> You create a lambda in exactly the same way as a Proc, just using the 
+
+**lambda** keyword. The primary difference between Procs and lambdas is the control flow. When encountering a break, next, or return keyword, a lambda will behave like a standard named function would. Procs will break out of the whole scope they exist in, and this can cause some unexpected results. An example illustrates this behaviour better. <div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<br /> &nbsp; <span class="kw3">puts</span> <span class="st0">"Start of method"</span><br /> &nbsp; my_proc = <span class="kw3">proc</span> <span class="kw1">do</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">puts</span> <span class="st0">"inside proc"</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw2">return</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">end</span><br /> &nbsp; my_proc.<span class="me1">call</span><br /> &nbsp; <span class="kw3">puts</span> <span class="st0">"end of method"</span><br /> <span class="kw1">end</span><br /> <br /> <span class="co1">#Output</span><br /> Start of method<br /> inside <span class="kw3">proc</span>
+  </div>
+</div> When the return keyword is hit, the return is executed from the scope the Proc resides in, in this case the test method. Lambdas have a similar behaviour to that of standard named functions. If we change the Proc to a lambda, we get a more expected result. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> test<br /> &nbsp; <span class="kw3">puts</span> <span class="st0">"Start of method"</span><br /> &nbsp; my_lambda = <span class="kw3">lambda</span> <span class="kw1">do</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">puts</span> <span class="st0">"inside lambda"</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw2">return</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">end</span><br /> &nbsp; my_lambda.<span class="me1">call</span><br /> &nbsp; <span class="kw3">puts</span> <span class="st0">"end of method"</span><br /> <span class="kw1">end</span><br /> <br /> <span class="co1">#Output</span><br /> Start of method<br /> inside <span class="kw3">lambda</span><br /> <span class="kw1">end</span> of method
+  </div>
+</div> Here the return statement returns from the lambda itself, the same way a function would. The test method carries on executing after the lambda finishes. Another key difference is that lambdas will check the number of arguments passed to it, just like a named function. the interpreter will throw up an error if you don&#8217;t pass the correct number of arguments. A Proc will not care and just use Nil in place of a missing parameter. 
+
+<div class="codecolorer-container ruby railscasts" style="overflow:auto;white-space:nowrap;">
+  <div class="ruby codecolorer">
+    <span class="kw1">def</span> args<span class="br0">&#40;</span>code<span class="br0">&#41;</span><br /> &nbsp; a = <span class="st0">"test"</span><br /> &nbsp; code.<span class="me1">call</span><span class="br0">&#40;</span>a<span class="br0">&#41;</span><br /> <span class="kw1">end</span><br /> <br /> args<span class="br0">&#40;</span><span class="kw3">proc</span> <span class="br0">&#123;</span><span class="sy0">|</span>a,b<span class="sy0">|</span> <span class="kw3">puts</span> <span class="st0">"a: #{a.class} | b: #{b.class}"</span><span class="br0">&#125;</span><span class="br0">&#41;</span><br /> args<span class="br0">&#40;</span><span class="kw3">lambda</span> <span class="br0">&#123;</span><span class="sy0">|</span>a,b<span class="sy0">|</span> <span class="kw3">puts</span> <span class="st0">"a: #{a.class} | b: #{b.class}"</span><span class="br0">&#125;</span><span class="br0">&#41;</span><br /> <br /> <span class="co1">#Output</span><br /> a: <span class="kw3">String</span> <span class="sy0">|</span> b: <span class="kw4">NilClass</span><br /> wrong number of arguments <span class="br0">&#40;</span><span class="nu0">1</span> <span class="kw1">for</span> <span class="nu0">2</span><span class="br0">&#41;</span> <span class="br0">&#40;</span><span class="kw4">ArgumentError</span><span class="br0">&#41;</span>
+  </div>
+</div> Lambdas are best thought of as anonymous functions, acting like a function in every way but without being named. Procs are like snippets of code, wrapped up in an object to make them more useful.
