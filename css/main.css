@@ -257,7 +257,15 @@ a:visited { color: #205caa; }
 .post ul,
 .post ol { margin-left: 1.35em; }
 
-.post pre code { border: none; }
+.post pre code { 
+  border: none;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  white-space: pre\9;
+}
 
 /* terminal */
 .post pre.terminal {
@@ -613,7 +621,7 @@ h1.latest-header {
   div.latest {
     margin-top: 0px;
     position: absolute;
-    bottom: -250px;
+    bottom: -229px;
     width: 100%;
     margin-left: -13px;
     border: 0px;
