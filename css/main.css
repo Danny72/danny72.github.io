@@ -1,3 +1,22 @@
+/******************
+* Animations
+* ****************/
+ 
+@-webkit-keyframes answer_animation {
+  0%      { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+@-moz-keyframes answer_animation {
+  0%      { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+@keyframes answer_animation {
+  0%      { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
 /* Base */
 /* ----------------------------------------------------------*/
 
@@ -456,10 +475,11 @@ div.side a:link{ color: black; }
 div.side a:visited{ color: black; }
 
 div.bio {
-  border-bottom: 1px solid #DADADA;
   padding-bottom: 25px;
   margin-bottom: 25px;
   background: #DCDCDC;
+  border: 1px solid;
+  border-radius: 3px;
 }
 
 div.bio a:hover {
@@ -498,6 +518,8 @@ div.bio i {
 div.latest { 
   margin-top: 35px;
   background: #DADADA;
+  border: 1px solid;
+  border-radius: 3px;
 }
 
 a.latest_post  {
@@ -581,6 +603,8 @@ h1.latest-header {
   }
   div.bio {
     padding-bottom: 0px;
+    border: 0px;
+    border-radius: 0px;
   }
   div.bio a {
     display: inline-block; 
@@ -592,12 +616,151 @@ h1.latest-header {
     bottom: -250px;
     width: 100%;
     margin-left: -13px;
+    border: 0px;
+    border-radius: 0px;
   }
   div.maincontent {
     margin: 20px auto; 
     float: none;
     padding-bottom: 20px;
   }
+}
+
+@media screen and (max-width: 457px) {
+  .post-content code { font-size: 9px; }
+}
+
+
+/************
+* Spanish
+************/
+
+#ques_container {
+  position: relative;
+  float: left;
+  background-color: #DADADA;
+  overflow: hidden;
+  max-width: 500px;
+  padding-bottom: 2%;
+  font-size: 24px;
+  border-radius: 3px 3px 3px 3px;
+  border: 1px solid #000000;
+}
+
+#testdisplay {
+  padding-top: 6%;
+  width: 70%;
+  margin: 0 auto;
+}
+
+#testwordarea {
+  margin: 0 auto;
+  font-size: 32px;
+  text-align: center;
+}
+
+#testword::before {
+  content: "What is ";
+}
+
+#testword {
+  width: 5%;
+  display: inline;
+}
+
+#testpercent {
+  display: inline-block;
+  min-width: 200px;
+  position: relative;
+}
+
+#testpercent::before {
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  bottom: 0.1px;
+}
+
+#testpercent.correcta::before {
+  content: "\2714";
+  -webkit-animation: answer_animation 1s;
+  -moz-animation: answer_animation 1s;
+  animation: answer_animation 1s;
+  color: green;
+}
+
+#testpercent.incorrecta::before {
+  content: "\2718";
+  -webkit-animation: answer_animation 1s;
+  -moz-animation: answer_animation 1s;
+  animation: answer_animation 1s;
+  color: red;
+}
+
+#answer1 {
+  width: 100%;
+  font-size: 36px;
+  text-align: center;
+}
+
+#espbuttons {
+  display: block;
+}
+
+#testmark{
+  font-size: 48px;
+  text-align: center;
+}
+
+#testoptions {
+  font-size: 18px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#testoptions div {
+  display: inline-block;
+  min-width: 100px;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+#espbuttons input {
+  display: inline-block;
+  width: 25px;
+}
+
+.correct {
+  font-size: 16px !important;
+}
+
+.lab-correct {
+  padding-left: 5%;
+}
+
+#vocab_list {
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  min-width: 300px;
+  min-height: 275px;
+  background: #DADADA;
+  border: 1px solid;
+  border-radius: 3px 3px 3px 3px;
+}
+
+#vocab_list input {
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+}
+
+#vocab_list div {
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  min-width: 100px;
 }
 
 /************
@@ -610,3 +773,4 @@ footer {
   width: 100%;
   bottom: -274px;
 }
+

@@ -10,26 +10,28 @@ colour: lightcoral
   <div class="post">
     <header class="post-header">
       <h1>{{ site.posts.first.title }}</h1>
-      <p class="meta">{{ site.posts.first.date | date: "%-d %b, %Y" }}</p>
+      <p class="meta">{{ site.posts.first.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %} | tags: 
+      {% for tag in site.posts.first.tags %}
+        <a href="/tags/#{{tag}}">{{tag}}</a>
+        {% if forloop.last == false %}
+          ,  
+        {% endif %}
+      {% endfor %}
+    </p>
     </header>
 
     <article class="post-content">
       {{ site.posts.first.content }}
+
+      <div id="blog_posts">
+        <h3>Latest Posts</h3>
+        <div class="theposts">
+          {% for post in site.posts | limit: 5 %}
+            <a href="{{ post.url }}"><h4>{{ post.title }}</h4></a>
+            <p>{{ post.content | truncatewords: 22 }}</p>
+          {% endfor %}
+        </div>
+      </div>
     </article>
   </div>
-
-  <h1 class="latest-header">Latest Posts</h1>
-
-  <ul class="theposts">
-    {% for post in site.posts | limit: 5 %}
-      <li>
-        <span class="thepost-date">{{ post.date | date: "%-d %b, %Y" }}</span>
-        »
-        <a class="thepost-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
 </div>
