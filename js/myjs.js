@@ -202,14 +202,14 @@ jQuery(document).ready(function($) {
     var col = $(this).find("a").attr("data");
     $("body").toggleClass();
     $(this).toggleClass("color-" + col);
-    $(".site-header").css("border-top","4px solid " + col);
+    $(".site-header").css("border-bottom","4px solid " + col);
   }, function() {
     var bordcol, col = $(this).find("a").attr("data");
     $("body").toggleClass();
     bordcol = $("body").attr("class");
     bordcol = $("div." + bordcol + " a").attr("data");
     $(this).toggleClass("color-" + col);
-    $(".site-header").css("border-top","4px solid " + bordcol);
+    $(".site-header").css("border-bottom","4px solid " + bordcol);
   });
 
   $("a.site-title").parent().addClass("page-link index");
@@ -218,7 +218,7 @@ jQuery(document).ready(function($) {
   var col, active = $("div.post").attr("data") || "index";
   $("div." + active).addClass("active");
   col = $("div.active a").attr("data");
-  $(".site-header").css("border-top","4px solid " + col);
+  $(".site-header").css("border-bottom","4px solid " + col);
 
   (function() {
     var data, spanish = [];
@@ -253,9 +253,15 @@ jQuery(document).ready(function($) {
       for (i=0;i<max_len;i+=1) {
         espword = fil_data[i][0];
         espcat = fil_data[i][1];
-        $("#vocab_list div:eq(0)").append("<p class="+espcat+">"+espword+"</p>");
-        $("#vocab_list div:eq(1)").append("<p>"+data[espcat][espword]+"</p>");
+        $("section.words div:eq(0)").append("<p class="+espcat+">"+espword+"</p>");
+        $("section.words div:eq(1)").append("<p>"+data[espcat][espword]+"</p>");
       }
+    });
+
+    //click handler for esp char buttons
+    $("#vocabbuttons").on("click","input", function() {
+      var new_txt = $("input.text_input").val() + $(this).val();
+      $("input.text_input").val(new_txt).focus();
     });
   }());
 

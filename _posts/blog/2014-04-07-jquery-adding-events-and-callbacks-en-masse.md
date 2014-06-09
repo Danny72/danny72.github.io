@@ -1,9 +1,8 @@
 ---
 title: 'jQuery: Adding Events and Callbacks en-masse'
-author: Daniel
 layout: post
 permalink: /jquery-adding-events-and-callbacks-en-masse/
-category: blog
+category: "blog"
 tags:
   - animation
   - callback

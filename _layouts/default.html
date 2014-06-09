@@ -9,28 +9,6 @@
 
     <div class="page-content">
       <div class="wrap">
-        <div class="side">
-          <div class="bio">
-            <div class="about">
-              <h3>Daniel Pike</h3>
-              <p>
-              A blog about coding and personal stuff
-              </p>
-            </div>
-              <a class="bio_link" target="_blank" href="http://www.google.co.uk">
-                <i class="fa fa-google-plus-square"></i>Google</a>
-              <a class="bio_link" target="_blank" href="http://www.github.com/danny72">
-                <i class="fa fa-github-square"></i>Github</a>
-              <a class="bio_link" target="_blank" href="http://www.twitter.com/dannyp72">
-                <i class="fa fa-twitter"></i>Twitter</a>
-          </div>
-          <div class="latest">
-            <h3>Latest Posts</h3>
-            {% for post in site.posts limit:5 %}
-              <a class="latest_post" href="{{ post.url }}">{{ post.title }}</a>
-            {% endfor %}
-          </div>
-        </div>
         <div class="maincontent">
           {{ content }}
         </div>
