@@ -773,6 +773,8 @@ h1.latest-header {
   width: 30px;
 }
 
+div.post_footer p { display: inline-block; }
+
 /************
 * Footer
 ************/
