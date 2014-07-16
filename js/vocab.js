@@ -213,8 +213,11 @@ jQuery(document).ready(function($) {
   //click handler for esp char buttons
   $("#vocabbuttons").on("click","input", function() {
     var new_txt = $("input.text_input").val() + $(this).val();
-    $("input.text_input").val(new_txt).focus();
+    console.log("but: " + $(this).val());
+    console.log("current: " + $("input.text_input").val() + " | " + $(this).val());
+    console.log("new txt: " + new_txt);
     console.log("esp char entered: " + new_txt);
+    $("input.text_input").val(new_txt).focus();
   });
 
 
