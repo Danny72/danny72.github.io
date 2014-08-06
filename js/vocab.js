@@ -25,6 +25,8 @@ jQuery(document).ready(function($) {
       score = [0];
       percent = $("#testpercent").text((score[0])+" / "+max);
       $("#testword").text(get_word_at(count));
+      $("#search p").text("Search SpanishDict for " + get_word_at(count));
+      $("#search a").attr("href","http://spanishdict.com/translate/" + get_word_at(count));
     }
 
     //swaps k/v pairs in object
