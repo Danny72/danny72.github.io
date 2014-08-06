@@ -100,13 +100,16 @@ jQuery(document).ready(function($) {
       }
     }
     
+    //click handler: animate the test words if click on percentage
     function add_event_handlers(json, data) {
-      //click handler: animate the test words if click on percentage
       $("#testpercent").click(function() {
         count += 1;
         if (count < max) {
           $("#testword").animate({opacity: 0},500, function() {
-            $(this).text(get_word_at(count));
+            var nword = get_word_at(count);
+            $(this).text(nword);
+            $("#search p").text("Search SpanishDict for " + nword);
+            $("#search a").attr("href","http://spanishdict.com/translate/" + nword);
             }).animate({opacity: 1},500);
         }
         $(this).text((score[0])+" / "+max);

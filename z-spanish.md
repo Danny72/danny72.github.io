@@ -46,6 +46,9 @@ This is my page for practising my Spanish Vocabulary.
         <input type="radio" name="select_lang" value="eng" checked>Eng
         <input type="radio" name="select_lang" value="spa">Spa
       </div>
+      <div id="search">
+        <a href="" target="_blank"><p style="display:inline-block">Search SpanishDict for word</p></a>
+      </div>
     </div>
   </div>
 </div>
