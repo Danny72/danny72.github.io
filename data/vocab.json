@@ -484,9 +484,7 @@
         "doce":"12",
         "trece":"13",
         "catorce":"14",
-        "quince":"15"
-    },
-    "numbers2":{
+        "quince":"15",
         "dieciseis":"16",
         "diecisiete":"17",
         "dieciocho":"18",
@@ -685,7 +683,7 @@
     "dar": "give",
     "decir": "say",
     "defender": "defend",
-    "dejar": "stop",
+    "dejar": "leave",
     "demostrar": "show",
     "descansar": "rest",
     "descubrir": "discover",
