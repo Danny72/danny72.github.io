@@ -14,9 +14,11 @@ colour: lightcoral
   <h3 class="{{ this_year }}_header">{{this_year}}</h3>
   {% endif %}
 
-  <article>
-  <h4><a href="{{post.url}}">{{post.title}}</a></h4>
-  <p>{{post.content | truncatewords: 22}}</p>
+  <article class='blog_snippit'>
+      <h4><a href="{{post.url}}">{{post.title}}</a></h4>
+      <div class='blog_snippit_date'>{{post.date | date: "%b %-d"}}</div>
+      {%comment%} the auto p tag were breaking layout so they have been removed {%endcomment%}
+      <p>{{post.content | truncatewords: 22 | remove: '<p>' | remove: '</p>'}}</p>
   </article>
 
   {% if this_year != next_year %}

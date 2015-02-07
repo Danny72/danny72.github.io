@@ -24,7 +24,7 @@
           {% if node.url != "/feed.xml" and node.url != "/index.html" and node.url != "/tags/" %}
           <div class="page-link {{ node.url | remove: '/' }}">
             <a href="{{ node.url | prepend: site.baseurl }}" data="{{ node.colour }}"> 
-                {{ node.title }}</a>
+                {{ node.title | upcase }}</a>
             </div>
           {% endif %}
         {% endfor %}
@@ -34,7 +34,7 @@
   </div>
 
 </header>
-<div id="background_img"><!--
+<!--
   <div class="info-div-container">
     <div class="avatar"></div>
     <h2>Daniel Pike</h2>

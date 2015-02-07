@@ -76,7 +76,8 @@ p.meta i {
 }
 
 .site-header {
-  border-bottom: 5px solid #e8e8e8;
+  font-family: "Open Sans";
+  border-bottom: 2px solid #e8e8e8;
   min-height: 56px;
   background-color: white;
 }
@@ -453,7 +454,6 @@ p.meta i {
 **************/
  
 .my_nav {
-   background: whitesmoke;
    line-height: 0px;
 }
 
@@ -462,8 +462,7 @@ div.page-link {
    background-color: F7F0F4;
    display: inline-block;
    min-width: 120px;
-   font-size: 17.2px;
-   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 14px;
    /*border-right: 1px solid #EAEAEA;*/
    text-align: center;
    line-height: 56px;
@@ -484,13 +483,6 @@ body.blog div.page-link.blog { background: lightcoral; }
 body.about div.page-link.about { background: lightblue; }
 body.html5 div.page-link.html5 { background: lightgreen; }
 body.spanish-vocab div.page-link.spanish-vocab { background: orange; }
-
-#background_img {
-  background: url("/data/background.png"); 
-  width: 100%;
-  height: 250px;
-  margin: 0px auto;
-}
 
 .info-div-container {
   margin: 0px auto;
@@ -557,7 +549,11 @@ h1.latest-header {
 #blog_posts a:visited { color: black; }
 #blog_posts a { text-decoration: none; }
 
-#blog_posts p { font-size: 14px; }
+#blog_posts p { 
+  font-size: 14px;
+  padding: 20px;
+  padding-top: 0px;
+}
 
 #blog_posts h3 {
   border-bottom: 1px solid #DADADA;
@@ -568,8 +564,21 @@ h1.latest-header {
 #blog_posts h4 {
   margin-bottom: 15px;
   font-family: "Open Sans";
+  padding: 20px;
 }
 
+#blog_posts article.blog_snippit {
+  background: #F5F5F5;
+  position: relative;
+}
+
+#blog_posts div.blog_snippit_date {
+  font-size: 18px; 
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: rgba(0, 0, 0, 0.21);
+}
 
 @media screen and (max-width:1129px) {
   div.maincontent { max-width: 700px; }
