@@ -202,14 +202,16 @@ p.meta i {
   font-size: 42px;
   letter-spacing: -1.75px;
   line-height: 1;
-  font-weight: 300;
-  margin-top: 15px;
+  padding-top: 40px;
 }
 
 .post-header .meta {
   font-size: 15px;
   color: #818181;
   margin-top: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .post-content { 
@@ -433,7 +435,9 @@ p.meta i {
     margin: 0;
   }
 
-  .post-header h1 { font-size: 42px; }
+  .post-header h1 { 
+    font-size: 42px;
+  }
   .post-content h2 { font-size: 28px; }
   .post-content h3 { font-size: 22px; }
   .post-content h4 { font-size: 18px; }
@@ -530,13 +534,6 @@ div.maincontent {
   margin: 0px auto;
 }
 
-div.maincontent span {
-  background: whitesmoke;
-  padding: 6px;
-  margin-right: 10px;
-  border: 1px dashed;
-}
-
 h1.latest-header {
   font-size: 36px;
 }
@@ -565,6 +562,7 @@ h1.latest-header {
   margin-bottom: 15px;
   font-family: "Open Sans";
   padding: 20px;
+  width: 80%;
 }
 
 #blog_posts article.blog_snippit {
@@ -790,22 +788,21 @@ div.post_footer p { display: inline-block; }
 
 #verb_container {
   text-align:center;
-  background: lightgreen;
+  background: whitesmoke;
   border-radius: 10px;
   padding: 40px;
 }
 
 div.flip_container { perspective: 1000; }
 
-div.flip_container:hover .flipper, div.flip_container.hover .flipper {
+div.flip_container.flipped .flipper {
   transform: rotateY(180deg);
 }
 
 .front, .back {
   backface-visibility: hidden;
   position: absolute;
-  top: 0;
-  left: 44%;
+  width: 100%;
 }
 
 .front {
@@ -818,8 +815,8 @@ div.flip_container:hover .flipper, div.flip_container.hover .flipper {
 }
 
 div.flipper {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 107px;
   background: white;
   border-radius: 15px;
   width: 75%;
@@ -827,6 +824,32 @@ div.flipper {
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
+}
+
+div.flipper span.word {
+  font-size: 24px;
+}
+
+div.check_answer {
+  padding-top: 27px;
+}
+
+div.check_answer a {
+  width: 50%;
+  display: inline-block;
+  padding: 10px 0px 10px 0px;
+}
+
+div.check_answer a.wrong {
+  float: left;
+  background: lightcoral;
+  border-bottom-left-radius: 15px;
+}
+
+div.check_answer a.correct {
+  float: right;
+  background: lightgreen;
+  border-bottom-right-radius: 15px;
 }
 
 ul.progress_bar {
@@ -847,6 +870,74 @@ li.dot {
 li.dot.complete {
   background: white;
 }
+
+ul.dot_matrix { 
+  width: 39%;
+  margin: 0 auto;
+  padding: 0px 20px 50px 30px;
+  border: 1px solid black;
+}
+
+ul.dot_matrix li.horizontal {
+  display: inline-block;
+  width: 50px;
+  height: 0;
+  border: 10.5px solid transparent;
+  border-bottom-color: white;
+  position: relative;
+  left: -10px;
+}
+
+ul.dot_matrix li.horizontal:after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 50px;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: white;
+}
+
+ul.dot_matrix li.horizontal.active {
+  border-bottom-color: red;
+}
+
+ul.dot_matrix li.horizontal.active:after {
+  border-top-color: red;
+}
+
+ul.dot_matrix li.vertical {
+  display: inline-block;
+  width: 0;
+  height: 50px;
+  border: 10.5px solid transparent;
+  border-left-color: white;
+  position: relative;
+  top: 80.5px;
+}
+
+ul.dot_matrix li.vertical:after {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: -10px;
+  width: 0;
+  height: 50px;
+  border: 10.5px solid transparent;
+  border-right-color: white;
+}
+
+ul.dot_matrix li.vertical.active{
+  border-left-color: red;
+}
+
+ul.dot_matrix li.vertical.active:after {
+  border-right-color: red;
+}
+div.dot_matrix_middle { padding-top: 15px; }
+div.dot_matrix_bottom { padding-top: 65px; }
+
 
 /************
 * Footer
