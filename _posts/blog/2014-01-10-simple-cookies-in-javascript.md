@@ -1,6 +1,5 @@
 ---
 title: Simple Cookies in Javascript
-author: Daniel
 layout: post
 permalink: /simple-cookies-in-javascript/
 category: blog

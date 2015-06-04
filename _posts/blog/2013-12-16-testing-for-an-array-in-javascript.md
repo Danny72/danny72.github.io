@@ -1,6 +1,5 @@
 ---
 title: Testing for an Array in Javascript
-author: Daniel
 layout: post
 permalink: /testing-for-an-array-in-javascript/
 category: blog

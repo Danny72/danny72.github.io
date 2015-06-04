@@ -1,6 +1,5 @@
 ---
 title: Creating Functions in a Loop and Closure
-author: Daniel
 layout: post
 permalink: /creating-functions-in-a-loop-and-closure/
 category: blog

@@ -203,15 +203,17 @@ p.meta i {
   letter-spacing: -1.75px;
   line-height: 1;
   padding-top: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  padding-bottom: 40px;
+  text-align: center;
 }
 
 .post-header .meta {
   font-size: 15px;
   color: #818181;
   margin-top: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
-  padding-bottom: 20px;
   padding-top: 10px;
+  text-align: center;
 }
 
 .post-content { 
@@ -437,6 +439,9 @@ p.meta i {
 
   .post-header h1 { 
     font-size: 42px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+    padding-bottom: 40px;
   }
   .post-content h2 { font-size: 28px; }
   .post-content h3 { font-size: 22px; }
