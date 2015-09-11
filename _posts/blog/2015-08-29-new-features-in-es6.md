@@ -6,7 +6,7 @@ permalink: "new-features-in-es6"
 tags: ["javascript","es6"]
 ---
 
-# New Features in ECMASscript 6
+ECMAScript 6 introduces a whole host of new features into Javascript. With the final spec having been set, let's review some of the new features.
 
 ### For-Of loops
 
@@ -35,14 +35,24 @@ The **For-Of** loop doesn't just work on arrays though, it will work on all arra
       c
 
 ### Arrow functions
+
 ### Symbols
+
 ### Generators
+
 ### Template strings
+
 ### Rest parameters and defaults 
+
 ### Destructuring
+
 ### Collections
+
 ### Proxies 
+
 ### Classes and Modules
+
 ### Let Keyword
+
 ### Subclassing
 
