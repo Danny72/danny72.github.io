@@ -8,7 +8,7 @@ tags: ["javascript","es6"]
 
 ECMAScript 6 introduces a whole host of new features into Javascript. With the final spec having been set, let's review some of the new features.
 
-### For-Of loops test123
+### For-Of loops
 
 The **For-Of loop** is the new ES6 way of looping through an array. It doesn't replace **For-If** loops, as they're intended for looping over objects and were never meant to be used on arrays. The **For-Of loop** will iterate over the values of the array, not the properties/index like an **For-If** loop does.
 
