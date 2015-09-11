@@ -103,3 +103,12 @@ To avoid issues related to hoisting and variable conflicts it creates, it's best
             console.log(x);
         }
 
+### ES6 and let
+
+In order to resolve a lot of these issues, the upcoming ES6 spec introduces the let keyword to the language. It works as an alternative to var, and solves many of the issues var has. The let keyword will allow **block** scoping, so a variable declared inside a for loop won't be visible to the entire function.
+
+        for (let i=0; i<max; i+=1) {  //i only visible inside scope of for loop
+              //do something
+        }
+
+A benefit to let using block scoping is any declarations using let won't be hoisted to the top of the function. This means you can follow standard programming practice and declare variables as and when they're needed. All the final features for let haven't been finalized yet, but the basic behaviour will hopefully make these issues a thing of the past. Unfortunately var will still be there as removing it would probably break half of the internet.
