@@ -71,7 +71,7 @@ It's not quite as beautiful as the initial example, but it's still cleaner than 
         }
     };
     
-This code won't work as it's trying to increment a count property on the window object that doesn't exist. The standard way to fix this is to declare a variable in the parent scope to capture the value of this. But using an **arrow function**, the problem doesn't exist.
+This code won't work as it's trying to increment a count property on the window object that doesn't exist. The standard way to fix this is to declare a variable in the parent scope to capture the value of this. But using an **arrow function**, the problem doesn't exist. The **this** keyword will always be set to the outer function the **arrow function** is defined in.
 
     var incrementer = {
         count = 0,
