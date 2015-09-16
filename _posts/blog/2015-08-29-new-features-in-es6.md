@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New Features in ECMASscript 6"
+title: "New Features in ECMASscript 6 - Part 1"
 category: "blog"
 permalink: "new-features-in-es6"
 tags: ["javascript","es6"]
@@ -35,6 +35,53 @@ The **For-Of** loop doesn't just work on arrays though, it will work on all arra
       c
 
 ### Arrow functions
+
+ES6 gives us new syntax for writing function espressions; the **Arrow Function** syntax.
+
+    var fruit = ["apple","banana","melon","pear"];
+    //old syntax
+    fruit.filter(function(x) {
+        return x.length > 4;
+    });
+    > ["apple", "banana", "melon"]
+    //new syntax
+    fruit.filter(x => x.length > 4)
+    > ["apple", "banana", "melon"]
+    
+Theres a few points that need to be made about them though:
+* if you're passing zero or multiple arguments, they need to be wrapped in parentheses
+* you still need to use curly braces if the body has multiple expressions
+* arrow functions can't be used as constructors, ES6 provides classes for that
+
+
+    fruit.filter((x,n) => {
+        var length = x.length;
+        return length > 4;
+    });
+    > ["apple", "banana", "melon"]
+    
+It's not quite as beautiful as the initial example, but it's still cleaner than the old style. But the real benefit of arrow functions is **Lexical This**. The **this** keyword normally references the context in which it is called. Although the behaviour is consistent, the rules can be arcane and it's easy to make mistakes. For example, referencing **this** inside a setInterval function will bound **this** to the window object, instead of the function scope it was called in. 
+
+    var incrementer = {
+        count = 0,
+        increment: function() {
+            setInterval(function() {
+                this.count++; //not incrementer.count
+            },1000);
+        }
+    };
+    
+This code won't work as it's trying to increment a count property on the window object that doesn't exist. The standard way to fix this is to declare a variable in the parent scope to capture the value of this. But using an **arrow function**, the problem doesn't exist.
+
+    var incrementer = {
+        count = 0,
+        increment: () => {
+            setInterval(function() {
+                this.count++;
+            },1000);
+        }
+    };
+
 
 ### Symbols
 
