@@ -82,6 +82,18 @@ This code won't work as it's trying to increment a count property on the window 
         }
     };
 
+Note: using an **arrow function** will break the common JQuery pattern when assigning event handlers to elements, as **this** won't be referring to the element that triggers the event.
+
+    $("input").on("click", () => {
+        console.log($(this).text()); //this isn't the clicked input
+    });
+
+To fix this problem, use event.currentTarget.
+
+    $("input").on("click", e => {
+        console.log($(e.currentTarget).text());
+    });
+
 
 ### Symbols
 
